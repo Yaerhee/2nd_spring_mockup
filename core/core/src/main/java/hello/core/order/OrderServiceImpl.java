@@ -6,11 +6,23 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
+    
+    //AppConfig를 통한 생성자 주입을 위해 리팩토링
+    private final MemberRepository memberRepository; //final 상수 - 생성자를 통해 할당되어야 함
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+    //-> 인터페이스에만 의존, 이제 DIP 원칙을 철저하게 지키고 있음
+
+    //하단에 있는 부분은 참고용으로 남김(예전 코드)
 
     //회원 정보 조회를 위해 객체 호출
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    //하단의 주석 코드와는 다르게, 인터페이스에만 의존하도록 설계 및 코드를 변경하였음
-    private DiscountPolicy discountPolicy;
+    //private final MemberRepository memberRepository = new MemoryMemberRepository();
+    //하단의 주석 코드와는 다르게, 인터페이스에만 의존하도록 설계   코드를 변경하였음
+    //private DiscountPolicy discountPolicy;
     //실행해 보면 NullPointerException임 -> discountPolicy에 아무 값도 할당이 안 되어 있음
     //=> ** 해당 인터페이스의 구현 객체를 대신 생성하고 주입해 주는 존재가 필요함 **
 

@@ -10,8 +10,13 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        //회원 서비스 구현체를 불러온 후
-        MemberService memberService = new MemberServiceImpl();
+        //AppConfig를 설정하고 나서 코드를 변경해줌
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        //appConfig를 통해 memberService 인터페이스를 받음 -> Impl이 들어가 있을 것
+
+        //회원 서비스 구현체를 불러옴 (이전 코드라 더이상 활용하지 않음)
+        //MemberService memberService = new MemberServiceImpl();
         
         //새로운 member 정보를 입력하여 회원가입
         Member member = new Member(1L, "memberA", Grade.VIP);

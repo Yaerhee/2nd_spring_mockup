@@ -11,8 +11,15 @@ import hello.core.order.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        //appConfig 설정하기
+        AppConfig appConfig = new AppConfig();
+        //각 Impl 클래스에 접근하여 생성자 주입을 처리하도록 함(구조를 구축)
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
+        //-> 더이상 구체 클래스에 의존하지 않음
+
+        //MemberService memberService = new MemberServiceImpl();
+        //OrderService orderService = new OrderServiceImpl();
 
         //ID를 담을 그릇 생성
         Long memberId = 1L;
