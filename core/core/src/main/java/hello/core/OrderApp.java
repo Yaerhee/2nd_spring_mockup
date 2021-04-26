@@ -33,7 +33,7 @@ public class OrderApp {
 
         //위에 생성된 주문을 기반, Order.java에서 설계한 toString을 통해 내용이 출력됨
         System.out.println("order = " + order);
-        System.out.println("order.calculatePrice = " + order.calculatePrice());
+        //System.out.println("order.calculatePrice = " + order.calculatePrice());
     }
 
 }

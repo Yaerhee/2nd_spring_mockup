@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
-    //-> 인터페이스에만 의존, 이제 DIP 원칙을 철저하게 지키고 있음
+    //-> 인터페이스에만 의존, 이제 DIP 원칙을 철저하게 지키고 있음 + OCP도!
 
     //하단에 있는 부분은 참고용으로 남김(예전 코드)
 
