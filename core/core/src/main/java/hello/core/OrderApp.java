@@ -7,10 +7,29 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.order.Order;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class OrderApp {
 
     public static void main(String[] args) {
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
+
+        Long memberId = 1L;
+        Member member = new Member(memberId, "memberA", Grade.VIP);
+        memberService.join(member);
+
+        Order order = orderService.createOrder(memberId, "itemA", 10000);
+
+        System.out.println("order = " + order);
+        
+        /*
+        아래의 Java 코드는 이전 코드 참고용
+        
         //appConfig 설정하기
         AppConfig appConfig = new AppConfig();
         //각 Impl 클래스에 접근하여 생성자 주입을 처리하도록 함(구조를 구축)
@@ -34,6 +53,7 @@ public class OrderApp {
         //위에 생성된 주문을 기반, Order.java에서 설계한 toString을 통해 내용이 출력됨
         System.out.println("order = " + order);
         //System.out.println("order.calculatePrice = " + order.calculatePrice());
+        */
     }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 //Spring 방식으로 코드 변경
-@Configuration //설정 정보, 구성 정보
+@Configuration //설정 정보, 구성 정보 (Singleton 패턴)
 public class AppConfig {
 
     @Bean //스프링 컨테이너에 등록하기 위한 애노테이션
