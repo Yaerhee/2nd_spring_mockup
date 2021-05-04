@@ -48,4 +48,9 @@ public class OrderServiceImpl implements OrderService {
         //할인 금액까지 계산 후 주문 return
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+    
+    //Test용
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

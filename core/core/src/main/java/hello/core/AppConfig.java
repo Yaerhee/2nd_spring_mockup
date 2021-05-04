@@ -15,18 +15,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration //설정 정보, 구성 정보 (Singleton 패턴)
 public class AppConfig {
 
+    //@Bean memberService -> new MemoryMemberRepository() (호출)
+    //@Bean OrderService -> new MemoryMemberRepository() (호출)
+
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService
+    //call AppConfig.memberRepository ?
+
     @Bean //스프링 컨테이너에 등록하기 위한 애노테이션
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
