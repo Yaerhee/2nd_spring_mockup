@@ -22,7 +22,12 @@ public class AppConfig {
     //call AppConfig.memberRepository
     //call AppConfig.memberRepository
     //call AppConfig.orderService
-    //call AppConfig.memberRepository ?
+    //call AppConfig.memberRepository  -> 이렇게 호출되어야 하지 않나?
+
+    //하지만... Test를 돌려 보면
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+    //call AppConfig.orderService 순으로 한 번만 호출된다.(!)
 
     @Bean //스프링 컨테이너에 등록하기 위한 애노테이션
     public MemberService memberService() {
