@@ -30,4 +30,18 @@ public class ConfigurationSingletonTest {
         Assertions.assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
         Assertions.assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
     }
+
+    @Test
+    void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        System.out.println("bean = " + bean.getClass());
+        //bean = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$80ab813f
+        
+        //AppConfig.java의 @Configuration을 주석처리 하고 실행하게 되면
+        //bean = class hello.core.AppConfig가 그대로 출력됨 + memberRepository가 세 번 호출 됨(!) -> 싱글톤이 깨짐
+        
+    }
+
 }
